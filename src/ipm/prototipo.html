@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>PROT&Oacute;TIPO IPM</title>
+        <link rel="stylesheet" href="prototipo_style.css">
+        <link rel="stylesheet" href="animate.css">
+        <link rel="stylesheet" href="jquery.mCustomScrollbar.min.css">
+        <link rel="stylesheet" href="jquery-jvectormap-2.0.4.css">
+    
+    </head>
+    
+    <body>
+        
+        <img src="assets/back.svg" id="back-button" class="button" onclick="backButton()">
+        <img src="assets/home.svg" id="mainscreen-button" class="button" onclick="mainscreenButton()">
+        <div id="simula-chamada" onclick="receiveCall()">Receber Chamada</div>
+        <div id="simula-mensagem" onclick="receiveText()">Receber Mensagem</div>
+        <div id="screen">
+            
+            <div id="block-screen" onclick="goTo('main-screen1')">
+                <div id="time"></div>
+				<div id="date"></div>
+            </div>
+
+            <div id="main-screen1" class="mainscreen screen">
+                <img src="assets/contacts.svg" id="contactsicon" class="icon" onclick="goTo('contacts')">
+                <img src="assets/phone.svg" id="callsicon" class="icon" onclick="goTo('recent-calls')">
+                <img src="assets/maps.svg" id="mapsicon" class="icon" onclick="goTo('map-app')">
+                <img src="assets/text.svg" id="textsicon" class="icon" onclick="goTo('recent-texts')">
+                <img id="text-notification" class="blinking">
+                <img id="circle11" class="screen-circle">
+                <img id="circle12" class="screen-circle" onclick="goTo('main-screen2')">
+                <div id="goright" onclick="goTo('main-screen2')">
+                <img id="img-goright"src="assets/arrow2.jpg">
+                </div>
+            </div>
+
+            <div id="main-screen2" class="mainscreen screen">
+                <img src="assets/help.svg" id="helpicon" class="icon" onclick="goTo('help')">
+                <img src="assets/audio.jpg" id="musicicon" class="icon" onclick="goTo('search-music1')"> 
+                <img id="circle21" class="screen-circle" onclick="goTo('main-screen1')">
+                <img id="circle22" class="screen-circle">
+                <div id="goleft" onclick="goTo('main-screen1')">
+                    <img id="img-goleft" src="assets/arrow2.jpg">
+                </div>
+            </div>
+
+            <div id="search-music1" class="searchmusic screen">
+                <p>Carregue para ouvir</p>
+                <img src="assets/mic.svg" class="icon centericon" onclick="musicEvent()">
+            </div>
+
+            <div id="search-music2" class="searchmusic screen">
+                <p>A ouvir a m&uacute;sica</p>
+                <img src="assets/load.gif" id="loadicon">
+            </div>
+
+            <div id="search-music3" class="searchmusic screen">
+                <div id="songtitle"></div>
+                <div id="songauthor"></div>
+                <img src="assets/mic.svg" class="icon centericon" onclick="musicEvent()">
+            </div>
+
+            <div id="search-music4" class="searchmusic screen">
+                <p>M&uacute;sica n&atilde;o encontrada!</p>
+                <img src="assets/mic.svg" class="icon centericon" onclick="musicEvent()">
+            </div>
+
+            <div id="contacts" class="contacts screen">
+                <ol id ="contacts-list" class="dragscroll">
+                    <div class="list-element" onmouseup="contactEvent('Afonso')" ><li>Afonso</li></div>
+                    <div class="list-element" onmouseup="contactEvent('Ana')" ><li>Ana</li></div>
+                    <div class="list-element" onmouseup="contactEvent('Andr&eacute')" ><li>Andr&eacute;</li></div>
+                    <div class="list-element" onmouseup="contactEvent('Beltrano')" ><li>Beltrano</li></div>
+                    <div class="list-element" onmouseup="contactEvent('Catarina')"><li>Catarina</li></div>
+                    <div class="list-element" onmouseup="contactEvent('Manuel')" ><li>Manuel</li></div>
+                </ol> 
+            </div>
+            
+            <div id="profile" class="profile screen">
+                <div id="profile-name"></div>
+                <img src="assets/call.svg" id="profile-call" class="icon do-call lefticon" onclick="callEvent()">
+                <img src="assets/text2.svg" id="profile-text" class="icon righticon" onclick="textEvent()">
+      
+            </div>
+            
+            <div id="recent-calls" class="screen">
+                <ol id ="recent-calls-list" class="dragscroll">
+                    <div id="recent-calls-list-wrapper"><div id ="no-recent-calls"class="none-found">Sem chamadas recentes</div></div>
+                </ol>
+            </div>
+            
+            <div id="call1" class="call screen">
+                <p class="blinking">A chamar</p>
+                <div id="calling-name1" class="calling-name"></div>
+                <img src="assets/phone2.svg" class="icon centericon cancel-call" onclick="goTo('main-screen1')">
+            </div>
+            
+            <div id="call2" class="call screen">
+                <p style="font-size: 11pt;">Em chamada</p>
+                <div id="calling-name2" class="calling-name"></div>
+                <div id="call-time"></div>
+                <img src="assets/phone2.svg" class="icon centericon cancel-call" onclick="goTo('main-screen1')">
+            </div>
+            
+            <div id="call3" class="call screen" onclick="goTo('contacts')">
+                <div id="calling-name3" class="calling-name"></div>
+                <p>n&atilde;o est&aacute; dispon&iacute;vel</p>
+            </div>
+            
+            <div id="call4" class="call screen">
+                <p style="font-size: 10pt" class="blinking">A receber chamada</p>
+                <div style="font-size: 12pt" id="calling-name4" class="calling-name"></div>
+                <img src="assets/phone2.svg" class="icon righticon cancel-call" onclick="redCall(0, 0)">
+                <img src="assets/phone.svg" class="icon lefticon do-call" onclick="greenCall(0, 1)">
+            </div>
+            
+            <div id="call5" class="call screen" onclick="goTo('contacts')">
+                <p style="margin-top: 0.4cm; margin-bottom: 0.1cm">Chamada de</p>
+                <div id="calling-name5" class="calling-name"></div>
+                <p>perdida</p>
+                
+            </div>
+            
+            
+            <div id="predefined-messages" class="text screen">
+                <ol id="predefined-messages-list" class="dragscroll">
+                    <div class="list-element" onmouseup="sendText('Ok')" onmousedown="checkLongPress1()"><li>Ok</li></div>
+                    <div class="list-element" onmouseup="sendText('Sim')" onmousedown="checkLongPress1()"><li>Sim</li></div>
+                    <div class="list-element" onmouseup="sendText('N&atilde;o')" onmousedown="checkLongPress1()"><li>N&atilde;o</li></div>
+                    <div class="list-element" onmouseup="sendText('Talvez')" onmousedown="checkLongPress1()"><li>Talvez</li></div>
+                    <div style="font-size: 10pt"class="list-element" onmouseup="sendText('Vem ter comigo')" onmousedown="checkLongPress1()"><li>Vem ter comigo</li></div>
+                    <div class="list-element" onmouseup="sendText('Estou a ir')" onmousedown="checkLongPress1()"><li>Estou a ir</li></div>
+                </ol>
+            </div>
+            
+            <div id="text" class="text screen">
+                <div id="messages-list-wrapper">
+                    <div id="texting-name">Teste</div>
+                    <div style="overflow: hidden"><ul id="messages-list" >
+                    </ul></div>
+                    
+                </div>
+            </div>
+            
+            <div id="recent-texts" class="text screen">
+                <ol id="recent-texts-list" class="dragscroll">
+                    <div id = "recent-texts-list-wrapper"></div>
+                </ol>
+            </div>
+            
+            <div id="map-app" class="screen">
+                <div id="map"></div>
+                <div id="legenda" onclick="goTo('map-legend')">Legenda</div>
+                <img src="assets/arrowup.svg" onclick="goTo('map-legend')" id="legenda-arrow">
+            </div>
+            
+            <div id="map-legend">
+                <ul id="map-legend-list" class="list">
+                    <div class="list-element" onclick="contactEvent('Afonso')">
+                        <li>Afonso</li><img id="cc-1" src="" class="contact-color">
+                    </div>
+                    <div class="list-element" onclick="contactEvent('Ana')">
+                        <li>Ana</li><img id="cc-2" src="" class="contact-color">
+                    </div>
+                    <div class="list-element" onclick="contactEvent('Andr&eacute')">
+                        <li>Andr&eacute;</li><img id="cc-3" src="" class="contact-color">
+                    </div>
+                    <div class="list-element" onclick="contactEvent('Beltrano')">
+                        <li>Beltrano</li><img id="cc-4" src="" class="contact-color">
+                    </div>
+                    <div class="list-element" onclick="contactEvent('Catarina')">
+                        <li>Catarina</li><img id="cc-5" src="" class="contact-color">
+                    </div>
+                    <div class="list-element" onclick="contactEvent('Manuel')">
+                        <li>Manuel</li><img id="cc-6" src="" class="contact-color">
+                    </div>
+                </ul>
+            </div>
+            
+            
+            <div id="help" class="screen">
+                <ul id ="help-list" class="list">
+                    <div class="list-element"><li>  
+                        <img src="assets/contacts.svg" id="h-contactsicon" class="h-icon">
+                        <p>Contactos</p>
+                    </li></div>
+                    <div class="list-element"><li>
+                        <img src="assets/phone.svg" id="h-callsicon" class="h-icon">
+                        <p>Chamadas</p>
+                    </li></div>
+                    <div class="list-element"><li>
+                        <img src="assets/text.svg" id="h-textsicon" class="h-icon">
+                        <p>Mensagens</p>
+                    </li></div>
+                    <div class="list-element"><li>
+                        <img src="assets/maps.svg" id="h-mapsicon" class="h-icon">
+                        <p>Mapa</p>
+                    </li></div>
+                    <div class="list-element"><li>
+                        <img src="assets/audio.jpg"mc id="h-musicicon" class="h-icon">
+                        <p style="text-align: left; font-size: 6pt;">Reconhecimento de m&uacute;sica</p>
+                    </li></div>
+                </ul> 
+            </div>
+        </div>
+
+    </body>
+    
+<script src="jquery.min.js"></script>
+<script src="jquery.mCustomScrollbar.js"></script>
+<script src="general.js"></script>
+<script src="callsandtext.js"></script>
+<script src="music.js"></script>  
+<script src="jquery-jvectormap-2.0.4.min.js"></script>
+<script src="jquery-jvectormap-map.js"></script>
+<script src="map.js"></script>
+
+</html>

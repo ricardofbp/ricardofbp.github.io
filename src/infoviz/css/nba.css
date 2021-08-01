@@ -1,0 +1,241 @@
+* { /* very bad, goes through ALL elements*/
+  font-family: sans-serif;
+  user-select: none; /* Standard */
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body:after {
+    content : "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f5f4f2;
+    width: 100%;
+    height: 100%;
+    
+    z-index: -1;
+}
+
+#dashboard{
+  width: 100%;
+  height: 100%;
+}
+
+#selectors{
+  display: flex;
+  padding: 0 30px;
+  flex-flow: row nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.scatter-btn {
+  text-align: center;
+  background-color: #373434;
+  color: white;
+  margin: 5px;
+  padding: 10px;
+  width: 50px;
+  font-size: 10px;
+  transform: translate(-50pt, 120px);
+  border: none;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.scatter-btn:hover, .scatter-btn:focus {
+  background-color:darkslategrey;
+}
+
+#ppg {
+  background-color: gray;
+}
+/* Dropdown Button Of Team*/
+.dropbtn_team {
+  position: relative;
+  background-color: #373434;
+  color: white;
+  padding: 10px;
+  width: 140px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown Button Of Player 1*/
+.dropbtn_player1{
+  position: relative;
+  background-color: #373434;
+  color: white;
+  padding: 10px;
+  width: 140px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color:darkslategrey;
+}
+
+/* The search field */
+#teamInput {
+  box-sizing: border-box;
+  width: 140px;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 16px 12px 17px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  font-family: inherit;
+}
+
+.playerInput {
+  box-sizing: border-box;
+  width: 137px;
+  background-image: url('searchicon.png');
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 16px 12px 17px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  font-family: inherit;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {outline: 3px solid #ddd;}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown_team {
+  position: relative;
+}
+
+.dropdown_player {
+  position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) for Team dropdown */
+.dropdown-content-team {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 140px;
+  width: 113px;
+  max-height: 250px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content-player {
+  display: none;
+  position: absolute;
+  margin-right: -140px;
+  background-color: #f6f6f6;
+  /*min-width: 230px;*/
+  width: 140px;
+  max-height: 250px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+/* Links inside the dropdown of the team */
+.dropdown-content-team a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Links inside the dropdown of the players */
+.dropdown-content-player a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content-team a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.team {
+  font-family: inherit;
+}
+
+.idioms{
+
+  margin: 20 10 10 10;
+
+}
+
+.titles{
+  text-align: center;
+  font-size: 20px;
+}
+
+.sub-titles{
+  text-align: center;
+  font-size: 12px;
+}
+
+#bottom-container {
+  width: 100%;
+  height: 50%;
+}
+
+#top-container {
+  width: 100%;
+  height: 50%;
+}
+
+#all_radar{
+  margin-left: 0%;
+  font-family: inherit;
+  text-align: center;
+}
+
+#all_scatterplot {
+  margin-left: 0%;
+  text-align: center;
+  font-family: inherit;
+}
+
+#all_map {
+  margin-right: 0%;
+}
+
+#all_parallelcoords {
+  margin-right: 8%;
+  margin-left: -10%
+}
+
+
+#header {
+  font-size: 25px;
+  font-family: inherit;
+  padding-top: 5px;
+  text-align: center;
+}
+
+#player_buttons{
+  display: flex;
+  justify-content: space-between;
+}
